@@ -55,6 +55,12 @@ nav > ul > li:last-child {
     margin-right: 3em;
 }
 
+.inject-button {
+    /* background: orange; */
+}
+
+
+
 section {
     margin: 2em;
 
@@ -109,4 +115,9 @@ label {
     border-radius: 25px;
     padding: 1em;
     margin: 1em;
+}
+
+.disabled {
+    cursor:not-allowed;
+    opacity: .3;
 }

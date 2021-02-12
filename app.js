@@ -1,33 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('JavaScript loaded');
 
-    // Inject HTML Button Control
-    // const injectHTMLButton = document.querySelector(".injectButton");
-
+    // Start by creating the header and nav HTML
+    createPageLayoutHeader()
+    document.querySelector(".inject-button").addEventListener("click", createPageLayoutMain)
 
     // Create the HTML page layout 
-    createPageLayout();
-
-    // Assign the eventlisteners for page elements
-    // Handle add game button clicked
-    const form = document.querySelector("form");
-    form.addEventListener("submit", handleAddGame);
-
+    // createPageLayout();
 
 })
 
 
 // Create the page layout of HTML elements
-createPageLayout = function () {
-    // Create page header section
-    createPageLayoutHeader()
+// createPageLayout = function () {
+//     // Create page header section
+//     createPageLayoutHeader()
+//     document.querySelector(".inject-button").addEventListener("click", createPageLayoutMain)
 
-    // Create page main section
-    createPageLayoutMain()
-}
+// }
 
 // Create page main section
 createPageLayoutMain = function () {
+    document.querySelector(".inject-button").removeEventListener("click", createPageLayoutMain)
+
 
     // Create main section after the header section
     main = document.createElement("main");
@@ -170,6 +165,18 @@ createPageLayoutMain = function () {
     section.appendChild(ulGameList);
     ulGameList.classList.add("game-list")
 
+    // Remove eventlistener from InjectHTML button and disable access
+    const injectHTMLButton = document.querySelector(".inject-button");
+    // injectHTMLButton.removeEventListener("click", createPageLayoutMain)
+    injectHTMLButton.classList.add("disabled");
+
+    // Enable access to delete and reset  buttons and set event listeners
+    const deleteButton = document.querySelector(".delete-button");
+    const resetButton = document.querySelector(".reset-button");
+    deleteButton.classList.remove("disabled");
+    resetButton.classList.remove("disabled");
+
+    document.querySelector("form").addEventListener("submit", handleAddGame);
 }
 
 // Create page header section
@@ -194,14 +201,17 @@ createPageLayoutHeader = function () {
     // Create nav ul li items
     navUlLi = document.createElement("li")
     navUlLi.append("Inject HTML Form using JS")
+    navUlLi.classList.add("inject-button");
     navUl.appendChild(navUlLi)
 
     navUlLi = document.createElement("li")
     navUlLi.append("Delete Library List")
+    navUlLi.classList.add("delete-button", "disabled");
     navUl.appendChild(navUlLi)
 
     navUlLi = document.createElement("li")
     navUlLi.append("Reset Whole Page")
+    navUlLi.classList.add("reset-button", "disabled");
     navUl.appendChild(navUlLi)
 }
 
