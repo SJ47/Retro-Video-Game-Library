@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google fonts  -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="./app.js"></script>
+    <title>Retro Video Game Library</title>
+</head>
+
+<body>
+    <header>
+        <h1>My Retro Video Game Library</h1>
+        <nav>
+            <ul>
+                <li>Create form in the DOM</li>
+                <li>Delete Library List</li>
+                <li>Reset Whole Page</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <form>
+                <div class="form-container">
+                    <div class="form-item">
+                        <label for="" class="form-label">Game Title</label>
+                        <input type="text" id="title" required>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="" class="form-label">System Format</label>
+                        <select name="format" id="format">
+                            <option value="Commodore 64">Commodore 64</option>
+                            <option value="ZX81">ZX81</option>
+                            <option value="ZX Spectrum">ZX Spectrum</option>
+                            <option value="BBC Micro">BBC Micro</option>
+                            <option value="Dragon 32">Dragon 32</option>
+                            <option value="Commodore Amiga">Amiga 128</option>
+
+                        </select>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="" class="form-label">Game Owned?</label>
+                        <input type="radio" id="game-owned-yes" name="owned" value="Yes" required>
+                        <label for="owned-yes">Yes</label>
+                        <input type="radio" id="game-owned-no" name="owned" value="No" required>
+                        <label for="owned-yes">No</label><br>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="" class="form-label">Release Year</label>
+                        <!-- <input type="text" id="title" required> -->
+                        <input type="month" min="1980-01" value="1986-01">
+                    </div>
+
+                    <div class="form-item">
+                        <label for="rating" class="form-label">Game Rating</label>
+                        <input type="range" id="rating" min="0" max="10" value="0" required>
+                    </div>
+                </div>
+
+                <input type="submit" value="Add Game" class="add-game-button">
+            </form>
+
+            <h2>Game Library</h2>
+            <ul class="game-list">
+
+            </ul>
+        </section>
+    </main>
+</body>
+
+</html>

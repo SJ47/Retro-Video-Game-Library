@@ -1,0 +1,17 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #ffd230;
+  --secondary-color: #000;
+}
+
+body {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    
+    /* keep footer at bottom (along with footer css styling ) */
+    /* position: relative;
+    min-height: 100vh; */
+}
