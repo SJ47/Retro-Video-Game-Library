@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('JavaScript loaded');
 
+    // Inject HTML Button Control
+    // const injectHTMLButton = document.querySelector(".injectButton");
+
+
     // Create the HTML page layout 
     createPageLayout();
 
@@ -8,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle add game button clicked
     const form = document.querySelector("form");
     form.addEventListener("submit", handleAddGame);
+
+
 })
 
 
@@ -59,6 +65,7 @@ createPageLayoutMain = function () {
     formItem1.appendChild(input1);
     input1.id = "title";
     input1.type = "text";
+    input1.required = "required";
 
     // Create rest of form item 2 - System Format
     label2 = document.createElement("label");
@@ -72,6 +79,7 @@ createPageLayoutMain = function () {
     formItem2.appendChild(select1);
     select1.id = "format";
     select1.name = "format";
+    select1.required = "required";
 
     const systemOptions = ["Commodore 64", "ZX81", "ZX Spectrum", "BBC Micro", "Dragon 32", "Commodore Amiga"]
     // Create the option list in a loop
@@ -94,6 +102,7 @@ createPageLayoutMain = function () {
     input3.type = "radio";
     input3.name = "owned"
     input3.value = "Yes"
+    input3.required = "required"
 
     label3_1 = document.createElement("label");
     formItem3.appendChild(label3_1);
@@ -163,7 +172,6 @@ createPageLayoutMain = function () {
 
 }
 
-
 // Create page header section
 createPageLayoutHeader = function () {
     // Create header section at top of body
@@ -185,7 +193,7 @@ createPageLayoutHeader = function () {
 
     // Create nav ul li items
     navUlLi = document.createElement("li")
-    navUlLi.append("Create form in the DOM")
+    navUlLi.append("Inject HTML Form using JS")
     navUl.appendChild(navUlLi)
 
     navUlLi = document.createElement("li")
@@ -223,7 +231,12 @@ handleAddGame = function (event) {
 
     // Release Date
     const gameReleaseDate = document.createElement("p")
-    gameReleaseDate.textContent = `Release Date: ${event.target.release_date.value}`
+    let valueDate = event.target.release_date.value
+    if (valueDate == null || valueDate == "") {
+        valueDate = "Unknown"
+    }
+
+    gameReleaseDate.textContent = `Release Date: ${valueDate}`
     gameItem.appendChild(gameReleaseDate)
 
     // Game Rating
@@ -231,9 +244,13 @@ handleAddGame = function (event) {
     gameRating.textContent = `Rating: ${event.target.rating.value}`
     gameItem.appendChild(gameRating)
 
+
     // Add whole game item to the game library list
     gameList.appendChild(gameItem);
 
     // clear form of all data
     event.target.reset();
+    // Set input date back to a starting value of 1986 and rating to 1
+    event.target.release_date.value = "1986-01"
+    event.target.rating.value = 1;
 }
