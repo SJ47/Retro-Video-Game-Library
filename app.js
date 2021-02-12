@@ -33,6 +33,18 @@ createPageLayoutMain = function () {
     form = document.createElement("form");
     section.appendChild(form);
 
+    // Create form container
+    formContainer = document.createElement("div");
+    form.appendChild(formContainer);
+    formContainer.classList.add("form-container")
+
+    // Create form items for Title, System Format, Game Owned, Release Year and Game Rating
+    for (noOfFormItems = 1; noOfFormItems <= 5; noOfFormItems++) {
+        formItem = document.createElement("div");
+        formContainer.appendChild(formItem);
+        formItem.classList.add("form-item")
+    }
+
 }
 
 
