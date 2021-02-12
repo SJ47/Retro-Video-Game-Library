@@ -9,9 +9,82 @@
 
 body {
     margin: 0;
+    padding: 0;
     font-family: 'Lato', sans-serif;
     
     /* keep footer at bottom (along with footer css styling ) */
     /* position: relative;
     min-height: 100vh; */
+}
+
+header {
+    text-align: center;
+    margin: 2em;
+    background: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+nav > ul {
+    display: flex;
+    padding: 1em;
+    /* margin: 1em; */
+    list-style: none;
+    justify-content: space-between;
+    /* background-color: #ffd230; */
+}
+
+section {
+    margin: 2em;
+
+}
+
+.form-container {
+    border: 1px solid black;
+    border-radius: 25px;
+
+}
+
+.form-item{
+    font-size: 1rem;
+    display: inline-flex;
+    width: fit-content;
+    margin: .5em;
+    padding: .5em;
+}
+.add-game-button {
+    font-size: 1rem;
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    margin: 1em ;
+    padding: .5em 1.5em;
+    display: block;
+    border-radius: 25px;
+    border: 0;
+    outline: none;
+}
+
+label {
+    margin-right: .5em;
+    font-weight: bold;
+}
+
+.game-owned-yes, .game-owned-no {
+    font-weight: normal;
+}
+
+.game-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 25px;
+    list-style: none;
+}
+
+.game-list > li {
+    background: var(--primary-color);
+    /* border: 1px solid grey; */
+    border-radius: 25px;
+    padding: 1em;
+    margin: 1em;
 }

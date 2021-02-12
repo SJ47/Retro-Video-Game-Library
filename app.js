@@ -5,7 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     createPageLayout();
 
     // Assign the eventlisteners for page elements
-    // startButton.addEventListener("click", handleStartButton);
+    // Handle add game button clicked
+    const form = document.querySelector("form");
+    form.addEventListener("submit", handleAddGame);
 })
 
 
@@ -84,13 +86,11 @@ createPageLayoutMain = function () {
     label3 = document.createElement("label");
     formItem3 = document.querySelector(".form-item3");
     formItem3.appendChild(label3);
-    label3.append("Game Owned: ")
+    label3.append("Owned: ")
     label3.classList.add("form-label")
-    label3.htmlFor = 'game-owned'
 
     input3 = document.createElement("input");
     formItem3.appendChild(input3);
-    input3.id = "game-owned-yes";
     input3.type = "radio";
     input3.name = "owned"
     input3.value = "Yes"
@@ -98,12 +98,11 @@ createPageLayoutMain = function () {
     label3_1 = document.createElement("label");
     formItem3.appendChild(label3_1);
     label3_1.append("Yes")
-    label3_1.classList.add("form-label")
+    label3_1.classList.add("form-label", "game-owned-yes")
     label3_1.htmlFor = 'owned-yes'
 
     input3_1 = document.createElement("input");
     formItem3.appendChild(input3_1);
-    input3_1.id = "game-owned-no";
     input3_1.type = "radio";
     input3_1.name = "owned"
     input3_1.value = "no"
@@ -111,7 +110,7 @@ createPageLayoutMain = function () {
     label3_2 = document.createElement("label");
     formItem3.appendChild(label3_2);
     label3_2.append("No")
-    label3_2.classList.add("form-label")
+    label3_2.classList.add("form-label", "game-owned-no")
     label3_2.htmlFor = 'owned-no'
 
     // Create rest of form item 4 - Release Date
@@ -128,6 +127,7 @@ createPageLayoutMain = function () {
     input4.type = "month";
     input4.min = "1980-01"
     input4.value = "1986-01"
+    input4.name = "release_date"
 
     // Create rest of form item 5 - Game Rating
     label5 = document.createElement("label");
@@ -148,9 +148,9 @@ createPageLayoutMain = function () {
     // Create submit button
     button = document.createElement("input");
     formContainer.appendChild(button);
-    button.classList.add("add-game-button")
     button.type = "submit";
     button.value = "Add Game"
+    button.classList.add("add-game-button");
 
 
     // Create Game Library List
@@ -195,4 +195,45 @@ createPageLayoutHeader = function () {
     navUlLi = document.createElement("li")
     navUlLi.append("Reset Whole Page")
     navUl.appendChild(navUlLi)
+}
+
+// Handle add game button clicked
+handleAddGame = function (event) {
+    event.preventDefault();
+
+    const gameList = document.querySelector(".game-list")
+
+    // Add game details to list
+    const gameItem = document.createElement("li")
+
+    // Game Title
+    const gameTitle = document.createElement("h2")
+    gameTitle.textContent = `Game: ${event.target.title.value}`
+    gameItem.appendChild(gameTitle)
+
+    // System Format
+    const gameFormat = document.createElement("h3")
+    gameFormat.textContent = `Format: ${event.target.format.value}`
+    gameItem.appendChild(gameFormat)
+
+    // Game Owned
+    const gameOwned = document.createElement("p")
+    gameOwned.textContent = `Owned: ${event.target.owned.value}`
+    gameItem.appendChild(gameOwned)
+
+    // Release Date
+    const gameReleaseDate = document.createElement("p")
+    gameReleaseDate.textContent = `Release Date: ${event.target.release_date.value}`
+    gameItem.appendChild(gameReleaseDate)
+
+    // Game Rating
+    const gameRating = document.createElement("p")
+    gameRating.textContent = `Rating: ${event.target.rating.value}`
+    gameItem.appendChild(gameRating)
+
+    // Add whole game item to the game library list
+    gameList.appendChild(gameItem);
+
+    // clear form of all data
+    event.target.reset();
 }
