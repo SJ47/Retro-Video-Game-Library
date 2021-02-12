@@ -30,13 +30,13 @@
         <section>
             <form>
                 <div class="form-container">
-                    <div class="form-item">
-                        <label for="" class="form-label">Game Title</label>
+                    <div class="form-item form-item1">
+                        <label for="title" class="form-label">Game Title</label>
                         <input type="text" id="title" required>
                     </div>
 
-                    <div class="form-item">
-                        <label for="" class="form-label">System Format</label>
+                    <div class="form-item form-item2">
+                        <label for="format" class="form-label">System Format</label>
                         <select name="format" id="format">
                             <option value="Commodore 64">Commodore 64</option>
                             <option value="ZX81">ZX81</option>
@@ -48,21 +48,21 @@
                         </select>
                     </div>
 
-                    <div class="form-item">
-                        <label for="" class="form-label">Game Owned?</label>
+                    <div class="form-item form-item3">
+                        <label for="game-owned" class="form-label">Game Owned?</label>
                         <input type="radio" id="game-owned-yes" name="owned" value="Yes" required>
                         <label for="owned-yes">Yes</label>
                         <input type="radio" id="game-owned-no" name="owned" value="No" required>
                         <label for="owned-yes">No</label><br>
                     </div>
 
-                    <div class="form-item">
-                        <label for="" class="form-label">Release Year</label>
+                    <div class="form-item  form-item4">
+                        <label for="release-date" class="form-label">Release Date</label>
                         <!-- <input type="text" id="title" required> -->
-                        <input type="month" min="1980-01" value="1986-01">
+                        <input id="release-date" type="month" min="1980-01" value="1986-01">
                     </div>
 
-                    <div class="form-item">
+                    <div class="form-item form-item5">
                         <label for="rating" class="form-label">Game Rating</label>
                         <input type="range" id="rating" min="0" max="10" value="0" required>
                     </div>
