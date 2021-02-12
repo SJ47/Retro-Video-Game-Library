@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // Create page main section
 createPageLayoutMain = function () {
     document.querySelector(".inject-button").removeEventListener("click", createPageLayoutMain)
-
+    document.querySelector(".delete-button").addEventListener("click", handleDeleteButton)
+    document.querySelector(".reset-button").addEventListener("click", handleResetButton)
 
     // Create main section after the header section
     main = document.createElement("main");
@@ -263,4 +264,37 @@ handleAddGame = function (event) {
     // Set input date back to a starting value of 1986 and rating to 1
     event.target.release_date.value = "1986-01"
     event.target.rating.value = 1;
+}
+
+// Handle delete library list button clicked
+handleDeleteButton = function () {
+    console.log("DELETE LIBRARY LIST")
+
+    // Delete game library list
+    document.querySelector(".game-list").remove()
+
+    // Add Game Library List back in
+    ulGameList = document.createElement("ul");
+    section.appendChild(ulGameList);
+    ulGameList.classList.add("game-list")
+}
+
+
+// handle reset whole page button clicked
+handleResetButton = function () {
+
+    // Update button link availability
+    document.querySelector(".inject-button").classList.remove("disabled")
+    document.querySelector(".delete-button").classList.add("disabled")
+    document.querySelector(".reset-button").classList.add("disabled")
+
+    // Update eventlistener events 
+    document.querySelector(".delete-button").removeEventListener("click", handleDeleteButton)
+    document.querySelector(".reset-button").removeEventListener("click", handleResetButton)
+    document.querySelector(".inject-button").addEventListener("click", createPageLayoutMain)
+
+    document.querySelector("form").removeEventListener("submit", handleAddGame);
+
+    // delete main node and children
+    document.querySelector("main").remove()
 }
