@@ -216,30 +216,33 @@ createPageLayoutHeader = function () {
 
 // Handle add game button clicked
 handleAddGame = function (event) {
+    // Stop the form button default behaviour and hand control to us the developer
     event.preventDefault();
 
+    // Grab the ul element that will house the li items for games
     const gameList = document.querySelector(".game-list")
 
-    // Add game details to list
+    // Add game items to the ul element with list items li
     const gameItem = document.createElement("li")
 
-    // Game Title
+    // Game Title setup and insert value from form data event
     const gameTitle = document.createElement("h2")
     gameTitle.textContent = `${event.target.title.value}`
     gameItem.appendChild(gameTitle)
 
-    // System Format
+    // System Format setup and insert value from form data event
     const gameFormat = document.createElement("h3")
     gameFormat.textContent = `Format: ${event.target.format.value}`
     gameItem.appendChild(gameFormat)
 
-    // Game Owned
+    // Game Owned setup and insert value from form data event
     const gameOwned = document.createElement("p")
     gameOwned.textContent = `Owned: ${event.target.owned.value}`
     gameItem.appendChild(gameOwned)
 
-    // Release Date
+    // Release Date setup and insert value from form data event
     const gameReleaseDate = document.createElement("p")
+    // Just grab the year value as string.  If no date, default to Unknown
     let valueDate = event.target.release_date.value.toString().slice(0, 4);
     if (valueDate == null || valueDate == "") {
         valueDate = "Unknown"
@@ -248,20 +251,22 @@ handleAddGame = function (event) {
     gameReleaseDate.textContent = `Release Year: ${valueDate}`
     gameItem.appendChild(gameReleaseDate)
 
-    // Game Rating
+    // Game Rating setup and insert value from form data event
     const gameRating = document.createElement("p")
     gameRating.textContent = `Rating: ${event.target.rating.value}`
     gameItem.appendChild(gameRating)
 
-
-    // Add whole game item to the game library list
+    // Add whole game list item to the game library list ul parent
     gameList.appendChild(gameItem);
 
     // clear form of all data - keep note of previous date for next input
     valueDate = event.target.release_date.value;
     event.target.reset();
-    // Set input date back to a starting value of 1986 and rating to 1
+
+    // Set input date back to the previous entry date
     event.target.release_date.value = valueDate
+
+    // Reset game rating back to 1
     event.target.rating.value = 1;
 }
 
@@ -270,8 +275,8 @@ handleDeleteButton = function () {
     // Delete game library list
     document.querySelector(".game-list").remove()
 
-    // Add Game Library List back in
-    ulGameList = document.createElement("ul");
+    // Add Game Library List back in as ul element
+    const ulGameList = document.createElement("ul");
     section.appendChild(ulGameList);
     ulGameList.classList.add("game-list")
 }
