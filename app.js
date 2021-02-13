@@ -280,19 +280,21 @@ handleDeleteButton = function () {
 // handle reset whole page button clicked
 handleResetButton = function () {
 
-    // Update button link availability
+    // Update button link availability to enable InjectHTML button
+    // and disable Delete button and Reset button
     document.querySelector(".inject-button").classList.remove("disabled")
     document.querySelector(".inject-button").classList.add("enabled")
     document.querySelector(".delete-button").classList.add("disabled")
     document.querySelector(".reset-button").classList.add("disabled")
 
-    // Update eventlistener events 
+    // Update eventlistener events to remove event listeners on delete, reset and add game buttons
+    // and add listener back onto InjectHTML button
     document.querySelector(".delete-button").removeEventListener("click", handleDeleteButton)
     document.querySelector(".reset-button").removeEventListener("click", handleResetButton)
-    document.querySelector(".inject-button").addEventListener("click", createPageLayoutMain)
-
     document.querySelector("form").removeEventListener("submit", handleAddGame);
 
-    // delete main node and children
+    document.querySelector(".inject-button").addEventListener("click", createPageLayoutMain)
+
+    // delete <main> node and all its children
     document.querySelector("main").remove()
 }
