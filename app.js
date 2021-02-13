@@ -11,9 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Create page main section
 createPageLayoutMain = function () {
-    document.querySelector(".inject-button").removeEventListener("click", createPageLayoutMain)
-    document.querySelector(".delete-button").addEventListener("click", handleDeleteButton)
-    document.querySelector(".reset-button").addEventListener("click", handleResetButton)
 
     // Create main section after the header section
     main = document.createElement("main");
@@ -156,20 +153,35 @@ createPageLayoutMain = function () {
     section.appendChild(ulGameList);
     ulGameList.classList.add("game-list")
 
-    // Remove eventlistener from InjectHTML button and disable access
-    const injectHTMLButton = document.querySelector(".inject-button");
-    // injectHTMLButton.removeEventListener("click", createPageLayoutMain)
-    injectHTMLButton.classList.add("disabled");
+    // Update the event listeners
+    handleEventListeners();
 
-    // Enable access to delete and reset  buttons and set event listeners
-    const deleteButton = document.querySelector(".delete-button");
-    const resetButton = document.querySelector(".reset-button");
-    deleteButton.classList.remove("disabled");
-    resetButton.classList.remove("disabled");
+    // Update the status of the buttons on the page
+    handleButtonStatus();
+}
+
+// Handle various button status between disabled and enabled
+handleButtonStatus = function () {
+    // Disable the InjectHTML button by adding the disabled class adn removing the enabled class
+    document.querySelector(".inject-button").classList.add("disabled");
     document.querySelector(".inject-button").classList.remove("enabled")
 
-    document.querySelector("form").addEventListener("submit", handleAddGame);
+    // Enable access to delete and reset  buttons by removeing the disabled class
+    document.querySelector(".delete-button").classList.remove("disabled");
+    document.querySelector(".reset-button").classList.remove("disabled");
+}
 
+// Handle various eventlisteners depending on buttons being disabled or enabled
+handleEventListeners = function () {
+    // Remove inject HTML button event listener so the code is not re-injected
+    document.querySelector(".inject-button").removeEventListener("click", createPageLayoutMain)
+
+    // Add event listeners to the delete button and reset button
+    document.querySelector(".delete-button").addEventListener("click", handleDeleteButton)
+    document.querySelector(".reset-button").addEventListener("click", handleResetButton)
+
+    // Enable access to delete and reset  buttons and set event listeners
+    document.querySelector("form").addEventListener("submit", handleAddGame);
 }
 
 // Create page header section
