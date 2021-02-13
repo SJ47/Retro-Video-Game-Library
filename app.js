@@ -3,8 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Start by creating the header and nav HTML
     createPageLayoutHeader()
+
+    // Set an event listener on the Inject HTML Form button
     document.querySelector(".inject-button").addEventListener("click", createPageLayoutMain)
-    document.querySelector(".inject-button").classList.add("enabled")
 
 })
 
@@ -173,34 +174,39 @@ createPageLayoutMain = function () {
 
 // Create page header section
 createPageLayoutHeader = function () {
-    // Create header section at top of body
-    header = document.createElement("header");
+    // Create header section as a child of body element
+    const header = document.createElement("header");
     document.body.append(header);
 
-    // Create h1 page title
-    h1 = document.createElement("h1")
+    // Create h1 page title with title text as a child of header
+    const h1 = document.createElement("h1")
     h1.append("My Retro Video Game Library")
     header.appendChild(h1)
 
-    // Create nav
-    nav = document.createElement("nav");
+    // Create nav as a child of header
+    const nav = document.createElement("nav");
     header.appendChild(nav);
 
-    // Create nav ul
-    navUl = document.createElement("ul");
+    // Create nav ul as a child of nav
+    const navUl = document.createElement("ul");
     nav.appendChild(navUl);
 
-    // Create nav ul li items
+    // Create nav ul li item as child under Ul - Acting as HTML Inject Button
+    // Apply class on button to be enabled at start
     navUlLi = document.createElement("li")
     navUlLi.append("Inject HTML Form using JS")
-    navUlLi.classList.add("inject-button");
+    navUlLi.classList.add("inject-button", "enabled");
     navUl.appendChild(navUlLi)
 
+    // Create nav ul li item as child under Ul - Acting as Delete Library List Buttonv
+    // Apply class on button to be disabled at start
     navUlLi = document.createElement("li")
     navUlLi.append("Delete Library List")
     navUlLi.classList.add("delete-button", "disabled");
     navUl.appendChild(navUlLi)
 
+    // Create nav ul li item as child under Ul - Acting as Reset Page Button
+    // Apply class on button to be disabled at start
     navUlLi = document.createElement("li")
     navUlLi.append("Reset Whole Page")
     navUlLi.classList.add("reset-button", "disabled");
