@@ -193,6 +193,7 @@ createPageLayoutHeader = function () {
 
     // Create nav ul li item as child under Ul - Acting as HTML Inject Button
     // Apply class on button to be enabled at start
+    let navUlLi;
     navUlLi = document.createElement("li")
     navUlLi.append("Inject HTML Form using JS")
     navUlLi.classList.add("inject-button", "enabled");
