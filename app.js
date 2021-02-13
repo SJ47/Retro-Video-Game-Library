@@ -4,20 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start by creating the header and nav HTML
     createPageLayoutHeader()
     document.querySelector(".inject-button").addEventListener("click", createPageLayoutMain)
-
-    // Create the HTML page layout 
-    // createPageLayout();
+    document.querySelector(".inject-button").classList.add("enabled")
 
 })
-
-
-// Create the page layout of HTML elements
-// createPageLayout = function () {
-//     // Create page header section
-//     createPageLayoutHeader()
-//     document.querySelector(".inject-button").addEventListener("click", createPageLayoutMain)
-
-// }
 
 // Create page main section
 createPageLayoutMain = function () {
@@ -176,8 +165,10 @@ createPageLayoutMain = function () {
     const resetButton = document.querySelector(".reset-button");
     deleteButton.classList.remove("disabled");
     resetButton.classList.remove("disabled");
+    document.querySelector(".inject-button").classList.remove("enabled")
 
     document.querySelector("form").addEventListener("submit", handleAddGame);
+
 }
 
 // Create page header section
@@ -227,7 +218,7 @@ handleAddGame = function (event) {
 
     // Game Title
     const gameTitle = document.createElement("h2")
-    gameTitle.textContent = `Game: ${event.target.title.value}`
+    gameTitle.textContent = `${event.target.title.value}`
     gameItem.appendChild(gameTitle)
 
     // System Format
@@ -242,12 +233,12 @@ handleAddGame = function (event) {
 
     // Release Date
     const gameReleaseDate = document.createElement("p")
-    let valueDate = event.target.release_date.value
+    let valueDate = event.target.release_date.value.toString().slice(0, 4);
     if (valueDate == null || valueDate == "") {
         valueDate = "Unknown"
     }
 
-    gameReleaseDate.textContent = `Release Date: ${valueDate}`
+    gameReleaseDate.textContent = `Release Year: ${valueDate}`
     gameItem.appendChild(gameReleaseDate)
 
     // Game Rating
@@ -259,17 +250,16 @@ handleAddGame = function (event) {
     // Add whole game item to the game library list
     gameList.appendChild(gameItem);
 
-    // clear form of all data
+    // clear form of all data - keep note of previous date for next input
+    valueDate = event.target.release_date.value;
     event.target.reset();
     // Set input date back to a starting value of 1986 and rating to 1
-    event.target.release_date.value = "1986-01"
+    event.target.release_date.value = valueDate
     event.target.rating.value = 1;
 }
 
 // Handle delete library list button clicked
 handleDeleteButton = function () {
-    console.log("DELETE LIBRARY LIST")
-
     // Delete game library list
     document.querySelector(".game-list").remove()
 
@@ -285,6 +275,7 @@ handleResetButton = function () {
 
     // Update button link availability
     document.querySelector(".inject-button").classList.remove("disabled")
+    document.querySelector(".inject-button").classList.add("enabled")
     document.querySelector(".delete-button").classList.add("disabled")
     document.querySelector(".reset-button").classList.add("disabled")
 
