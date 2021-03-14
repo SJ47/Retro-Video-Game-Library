@@ -1,4 +1,4 @@
-# codeclan_week6_weekend_homework
+# A simple retro video game library for DOM manipulation practice.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/c2b8264d-203b-402a-99c3-d128d17f207c/deploy-status)](https://app.netlify.com/sites/elated-poitras-819206/deploys)
 
